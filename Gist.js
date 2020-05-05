@@ -1,7 +1,12 @@
 const https = require("https");
+const fs = require("fs");
 const YAML = require("yaml");
 
-const httpsOptions = {
+const { clonedSuccessful } = require("./logger");
+
+const AKA_FILE = "aka.yml";
+const GIST_PATH = `${__dirname}/aka.json`;
+const HTTPS_OPTIONS = {
   headers: {
     "User-Agent": "curl/7.30.0",
     Host: "api.github.com",
@@ -9,32 +14,50 @@ const httpsOptions = {
   },
 };
 
-const getUrl = (gistID) => `https://api.github.com/gists/${gistID}`;
+class Gist {
+  _getUrl(id) {
+    return `https://api.github.com/gists/${id}`;
+  }
 
-const parseData = (data) => {
-  const gist = JSON.parse(data);
-  const alias = gist.files["aka.yml"];
-  return YAML.parse(alias.content);
-};
+  _getFile() {
+    return new Promise((accept, reject) => {
+      fs.readFile(GIST_PATH, "utf8", function read(err, data) {
+        err ? reject(err) : accept(JSON.parse(data));
+      });
+    });
+  }
 
-const Gist = (gistID) => {
-  const gistURL = getUrl(gistID);
+  _save(data) {
+    fs.writeFile(GIST_PATH, data, (err) => {
+      if (err) return console.log(err);
+      clonedSuccessful();
+    });
+  }
 
-  const get = () =>
-    new Promise((accept) => {
-      https.get(gistURL, httpsOptions, (res) => {
+  async read() {
+    const { files } = await this._getFile();
+    const akaFile = files[AKA_FILE].content;
+    const commands = YAML.parse(akaFile);
+    return commands;
+  }
+
+  async update() {
+    const { id } = await this._getFile();
+    this.clone(id);
+  }
+
+  clone(id) {
+    return new Promise((accept) => {
+      https.get(this._getUrl(id), HTTPS_OPTIONS, (res) => {
         let data = "";
         res.on("data", (d) => (data += d));
         res.on("end", () => {
-          const res = parseData(data);
+          this._save(data);
           accept(res);
         });
       });
     });
-
-  return {
-    get,
-  };
-};
+  }
+}
 
 module.exports = Gist;
