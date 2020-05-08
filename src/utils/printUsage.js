@@ -22,9 +22,7 @@ const createDesc = (name, option) => {
 };
 
 const printUsage = (cmdList) => {
-	const content = Object.keys(cmdList).map((key) =>
-		createDesc(key, cmdList[key])
-	);
+	const content = Object.keys(cmdList).map((key) => createDesc(key, cmdList[key]));
 
 	const usage = commandLineUsage([
 		{

@@ -9,7 +9,10 @@ const replaceTemplate = (cmd, variables) => {
 };
 
 const exec = (rawCmd, argv) => {
-	const variables = { ...Variables.getLocal(), ...Variables.getFromCli(argv) };
+	const variables = {
+		...Variables.getLocal(),
+		...Variables.getFromCli(argv),
+	};
 	const cmd = replaceTemplate(rawCmd, variables);
 	shell.exec(cmd);
 };

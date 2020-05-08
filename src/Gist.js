@@ -35,7 +35,7 @@ class Gist {
 
 			log.success(
 				"Gist cloned/updated",
-				log.c`new commands are available at: {green aka} `
+				log.c`new commands are available at: {green aka} `,
 			);
 		});
 	}
@@ -72,7 +72,7 @@ class Gist {
 		if (!id) {
 			log.error(
 				"You got a problem",
-				log.c`you need the gist id: aka clone {underline GIST_ID}`
+				log.c`you need the gist id: aka clone {underline GIST_ID}`,
 			);
 		}
 

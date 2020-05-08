@@ -14,7 +14,7 @@ async function Aka() {
 		cli.onDefault(() => {
 			log.info(
 				"No script register yet",
-				log.c`Clone a gist first: {blue aka clone} {underline {white GIST_ID}}`
+				log.c`Clone a gist first: {blue aka clone} {underline {white GIST_ID}}`,
 			);
 		});
 
@@ -22,10 +22,7 @@ async function Aka() {
 			const cmd = Object.keys(DefaultCmd)
 				.map((k) => DefaultCmd[k])
 				.join(" | ");
-			log.error(
-				"Invalid Command",
-				log.c`try the available cmds: {blue $ aka ${cmd}}`
-			);
+			log.error("Invalid Command", log.c`try the available cmds: {blue $ aka ${cmd}}`);
 		});
 	});
 
@@ -41,15 +38,14 @@ async function Aka() {
 		});
 
 		cli.onError(() => {
-			const cmd = [
-				...Object.values(DefaultCmd),
-				...Object.keys(akaScripts),
-			].join(log.c`{dim , }`);
+			const cmd = [...Object.values(DefaultCmd), ...Object.keys(akaScripts)].join(
+				log.c`{dim , }`,
+			);
 
 			log.error(
 				"Invalid Command",
 				log.c`try the available: {blue $ aka ${cmd}}`,
-				log.c`to see the whole list: {bold $ aka} `
+				log.c`to see the whole list: {bold $ aka} `,
 			);
 		});
 	});

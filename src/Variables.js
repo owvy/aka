@@ -24,11 +24,14 @@ class Variables {
 		try {
 			const localVars = this.getLocal();
 			const yaml = new YAML.Document();
-			yaml.contents = { ...localVars, ...parseVars(data) };
+			yaml.contents = {
+				...localVars,
+				...parseVars(data),
+			};
 			fs.writeFileSync(VAR_PATH, yaml);
 			log.success(
 				"save and sound",
-				log.c`check the full list: {blue aka var {underline list}}`
+				log.c`check the full list: {blue aka var {underline list}}`,
 			);
 		} catch (err) {
 			log.error("Something went wrong", err);

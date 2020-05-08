@@ -2,6 +2,6 @@
 .env
 .yml
 .cache
-aka.json
+.aka.json
 node_modules
 variables.yml
