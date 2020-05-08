@@ -1,5 +1,6 @@
 .DS_Store
 .env
+.yml
 .cache
 aka.json
 node_modules
