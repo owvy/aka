@@ -2,10 +2,10 @@ const https = require("https");
 const fs = require("fs");
 const YAML = require("yaml");
 
-const { clonedSuccessful } = require("./utils/log");
+const log = require("./utils/log");
 
 const AKA_FILE = "aka.yml";
-const GIST_PATH = `${__dirname}/../aka.json`;
+const GIST_PATH = `${__dirname}/../.aka.json`;
 const HTTPS_OPTIONS = {
 	headers: {
 		"User-Agent": "curl/7.30.0",
@@ -29,8 +29,14 @@ class Gist {
 
 	_save(data) {
 		fs.writeFile(GIST_PATH, data, (err) => {
-			if (err) return console.log(err);
-			clonedSuccessful();
+			if (err) {
+				return log.error("You got an error", err);
+			}
+
+			log.success(
+				"Gist cloned/updated",
+				log.c`new commands are available at: {green aka} `
+			);
 		});
 	}
 
@@ -63,16 +69,30 @@ class Gist {
 	}
 
 	clone(id) {
-		console.log(id);
-		return null;
+		if (!id) {
+			log.error(
+				"You got a problem",
+				log.c`you need the gist id: aka clone {underline GIST_ID}`
+			);
+		}
+
 		return new Promise((accept) => {
 			https.get(this._getUrl(id), HTTPS_OPTIONS, (res) => {
+				const { statusCode } = res;
 				let data = "";
 				res.on("data", (d) => (data += d));
+
 				res.on("end", () => {
-					this._save(data);
-					accept(res);
+					if (statusCode === 200) {
+						// @todo - check if the data contains aka.yml
+						return this._save(data);
+					}
+
+					const { message } = JSON.parse(data);
+					log.error(`You got a problem: ${message}`);
 				});
+
+				res.on("error", (err) => log.error("You got a problem", err));
 			});
 		});
 	}

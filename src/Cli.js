@@ -11,7 +11,7 @@ const DefaultCmd = {
 
 const defaultCallback = () => null;
 
-const Cli = (localCommands) => {
+const Cli = (localCommands = []) => {
 	let onError = (cb = defaultCallback) => null;
 	let onDefault = (cb = defaultCallback) => null;
 	let onRun = (cb = defaultCallback) => null;
@@ -43,4 +43,5 @@ const Cli = (localCommands) => {
 	};
 };
 
-module.exports = Cli;
+exports.DefaultCmd = DefaultCmd;
+exports.Cli = Cli;

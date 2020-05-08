@@ -7,6 +7,9 @@
 	},
 	"author": "",
 	"license": "ISC",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
+	},
 	"devDependencies": {
 		"chalk": "^4.0.0",
 		"command-line-commands": "^3.0.1",

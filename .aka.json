@@ -1,0 +1,354 @@
+{
+  "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32",
+  "forks_url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/forks",
+  "commits_url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/commits",
+  "id": "3daa7998139376abb5eb9c407c980b32",
+  "node_id": "MDQ6R2lzdDNkYWE3OTk4MTM5Mzc2YWJiNWViOWM0MDdjOTgwYjMy",
+  "git_pull_url": "https://gist.github.com/3daa7998139376abb5eb9c407c980b32.git",
+  "git_push_url": "https://gist.github.com/3daa7998139376abb5eb9c407c980b32.git",
+  "html_url": "https://gist.github.com/3daa7998139376abb5eb9c407c980b32",
+  "files": {
+    "aka.yml": {
+      "filename": "aka.yml",
+      "type": "text/x-yaml",
+      "language": "YAML",
+      "raw_url": "https://gist.githubusercontent.com/gplopes/3daa7998139376abb5eb9c407c980b32/raw/10224cf5f9fe3e10c23c57c3020e402021b25395/aka.yml",
+      "size": 375,
+      "truncated": false,
+      "content": "what-time:\n  run: node -e 'console.log(new Date())'\n  desc: Echo Current Time\n\ndu:\n  run: echo docker-compose down & docker-compose up\n  desc: Restart Docker project\n\nsecret:\n  run: echo This is my secret, {SECRET_VALUE}\n  desc: Echo my secret values\n\ncreate:\n  desc: Collection of create alias\n  args:\n    folder: echo mkdir {name}\n    file: echo touch {name} && code {name}"
+    }
+  },
+  "public": true,
+  "created_at": "2020-05-04T19:52:57Z",
+  "updated_at": "2020-05-08T00:27:17Z",
+  "description": "Aka ",
+  "comments": 0,
+  "user": null,
+  "comments_url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/comments",
+  "owner": {
+    "login": "gplopes",
+    "id": 6972610,
+    "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+    "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gplopes",
+    "html_url": "https://github.com/gplopes",
+    "followers_url": "https://api.github.com/users/gplopes/followers",
+    "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+    "organizations_url": "https://api.github.com/users/gplopes/orgs",
+    "repos_url": "https://api.github.com/users/gplopes/repos",
+    "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gplopes/received_events",
+    "type": "User",
+    "site_admin": false
+  },
+  "forks": [
+
+  ],
+  "history": [
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "995a842d8ee1d4a09d1f01f7960cd5c4bc3131f2",
+      "committed_at": "2020-05-08T00:27:16Z",
+      "change_status": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/995a842d8ee1d4a09d1f01f7960cd5c4bc3131f2"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "32eb178872ab7f6b9fd1f5eec19373184ef8d088",
+      "committed_at": "2020-05-08T00:24:03Z",
+      "change_status": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/32eb178872ab7f6b9fd1f5eec19373184ef8d088"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "726564b14c17007d2e4ea237d383c5338f4139c1",
+      "committed_at": "2020-05-08T00:02:13Z",
+      "change_status": {
+        "total": 33,
+        "additions": 16,
+        "deletions": 17
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/726564b14c17007d2e4ea237d383c5338f4139c1"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "1fe96ef530f8bc57d3b8e89c446b7097984447ad",
+      "committed_at": "2020-05-05T21:59:50Z",
+      "change_status": {
+        "total": 2,
+        "additions": 1,
+        "deletions": 1
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/1fe96ef530f8bc57d3b8e89c446b7097984447ad"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "08a89d7a034f4895b1aabbf4d3e0a225c284e1d7",
+      "committed_at": "2020-05-05T21:58:52Z",
+      "change_status": {
+        "total": 7,
+        "additions": 6,
+        "deletions": 1
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/08a89d7a034f4895b1aabbf4d3e0a225c284e1d7"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "5c9ace209dcab52df1445bb52583f8dbe8f475a2",
+      "committed_at": "2020-05-04T21:38:01Z",
+      "change_status": {
+        "total": 9,
+        "additions": 4,
+        "deletions": 5
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/5c9ace209dcab52df1445bb52583f8dbe8f475a2"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "19568bcbc9b757416bca2f680e20b86f6573b6f2",
+      "committed_at": "2020-05-04T21:34:53Z",
+      "change_status": {
+        "total": 4,
+        "additions": 2,
+        "deletions": 2
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/19568bcbc9b757416bca2f680e20b86f6573b6f2"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "42e6cb980d11a1700f7204e0038b790c29fe394d",
+      "committed_at": "2020-05-04T21:24:44Z",
+      "change_status": {
+        "total": 8,
+        "additions": 4,
+        "deletions": 4
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/42e6cb980d11a1700f7204e0038b790c29fe394d"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "2da19c4b8ceeea76eaff24fa38454bb6b4cd218e",
+      "committed_at": "2020-05-04T21:22:19Z",
+      "change_status": {
+        "total": 12,
+        "additions": 9,
+        "deletions": 3
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/2da19c4b8ceeea76eaff24fa38454bb6b4cd218e"
+    },
+    {
+      "user": {
+        "login": "gplopes",
+        "id": 6972610,
+        "node_id": "MDQ6VXNlcjY5NzI2MTA=",
+        "avatar_url": "https://avatars1.githubusercontent.com/u/6972610?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/gplopes",
+        "html_url": "https://github.com/gplopes",
+        "followers_url": "https://api.github.com/users/gplopes/followers",
+        "following_url": "https://api.github.com/users/gplopes/following{/other_user}",
+        "gists_url": "https://api.github.com/users/gplopes/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/gplopes/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/gplopes/subscriptions",
+        "organizations_url": "https://api.github.com/users/gplopes/orgs",
+        "repos_url": "https://api.github.com/users/gplopes/repos",
+        "events_url": "https://api.github.com/users/gplopes/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/gplopes/received_events",
+        "type": "User",
+        "site_admin": false
+      },
+      "version": "36b00b8924579c8370e59e8422426c4bb3f6a9ce",
+      "committed_at": "2020-05-04T19:52:56Z",
+      "change_status": {
+        "total": 8,
+        "additions": 8,
+        "deletions": 0
+      },
+      "url": "https://api.github.com/gists/3daa7998139376abb5eb9c407c980b32/36b00b8924579c8370e59e8422426c4bb3f6a9ce"
+    }
+  ],
+  "truncated": false
+}
