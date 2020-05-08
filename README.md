@@ -1,12 +1,10 @@
-(WIP)
-
 # AKA
 
 Aka is a friendly CLI to run sharable bash commands.
 
 ## Quickstart
 
-~~`npm install -g @owvy/aka`~~
+`npm install -g @owvy/aka`
 
 Usage Examples:
 
@@ -38,9 +36,7 @@ create:
 
 #### Usage
 
-1.  You can create your own _Gist_ file or can clone any other one, ony requirement is to have: `aka.yml`
-
-2.  ~~Create your local config `aka local`~~
+You can create your own _Gist_ file or can clone any other one, ony requirement is to have: `aka.yml`
 
 ##### Run it
 
