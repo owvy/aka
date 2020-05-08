@@ -1,14 +1,29 @@
 {
-	"name": "aka",
+	"name": "@owvy/aka",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Aka is a friendly CLI to run sharable bash commands.",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:owvy/aka.git"
+	},
+	"keywords": [
+		"terminal",
+		"sharable",
+		"alias",
+		"bash",
+		"args",
+		"command",
+		"cli",
+		"javascript"
+	],
 	"bin": {
 		"aka": "index.js"
 	},
 	"scripts": {
 		"format": "prettier --write ./src"
 	},
-	"author": "",
+	"author": "Owvy Labs",
+	"homepage": "https://github.com/owvy/aka",
 	"license": "ISC",
 	"publishConfig": {
 		"registry": "https://npm.pkg.github.com/"
