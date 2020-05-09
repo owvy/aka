@@ -1,54 +1,42 @@
 const commandLineCommands = require("command-line-commands");
 
-const Gist = require("./Gist");
-const { Cli, DefaultCmd } = require("./Cli");
+const { hasLocalGist } = require("./scripts/gist");
+const { getUserCommands, execUserCommands } = require("./scripts/user-commands");
+const { cloneGist, updateGist } = require("./scripts/gist");
+const { runVariableCommand } = require("./scripts/variables");
+const printUsage = require("./scripts/print-usage");
 
 const log = require("./utils/log");
-const runScript = require("./utils/run-script");
-const printUsage = require("./utils/printUsage");
 
-async function Aka() {
-	Gist.isEmpty(() => {
-		const cli = Cli();
+module.exports = () => {
+	const userCommands = hasLocalGist() ? getUserCommands() : {};
+	const defaultCommands = ["clone", "var", "update", "list"];
+	const validCommands = [null, ...Object.keys(userCommands), ...defaultCommands];
 
-		cli.onDefault(() => {
-			log.info(
-				"No script register yet",
-				log.c`Clone a gist first: {blue aka clone} {underline {white GIST_ID}}`,
-			);
-		});
+	try {
+		const { command, argv } = commandLineCommands(validCommands);
+		const cmd = userCommands[command];
 
-		cli.onError(() => {
-			const cmd = Object.keys(DefaultCmd)
-				.map((k) => DefaultCmd[k])
-				.join(" | ");
-			log.error("Invalid Command", log.c`try the available cmds: {blue $ aka ${cmd}}`);
-		});
-	});
+		switch (command) {
+			case "clone":
+				return cloneGist(argv[0]);
+			case "update":
+				return updateGist();
+			case "var":
+				return runVariableCommand(argv);
+			case null:
+			case "list":
+				return printUsage(userCommands);
+			default:
+				execUserCommands(cmd, argv);
+		}
+	} catch (err) {
+		log.error(
+			"Invalid Command",
+			!hasLocalGist() && `try the available: $ aka${validCommands.join(" ")}`,
+			!hasLocalGist() && log.c`gist register yet: aka clone {dim {white [gist_id]}}`,
+		);
+	}
 
-	Gist.hasGist(async () => {
-		const akaScripts = await Gist.read();
-		const cli = Cli(Object.keys(akaScripts));
-
-		cli.onDefault(() => printUsage(akaScripts));
-
-		cli.onRun((command, argv) => {
-			const props = akaScripts[command];
-			runScript(props, argv);
-		});
-
-		cli.onError(() => {
-			const cmd = [...Object.values(DefaultCmd), ...Object.keys(akaScripts)].join(
-				log.c`{dim , }`,
-			);
-
-			log.error(
-				"Invalid Command",
-				log.c`try the available: {blue $ aka ${cmd}}`,
-				log.c`to see the whole list: {bold $ aka} `,
-			);
-		});
-	});
-}
-
-Aka();
+	return null;
+};
