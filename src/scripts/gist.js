@@ -1,8 +1,9 @@
 const https = require("https");
-const fs = require("fs");
 
 const log = require("../utils/log");
-const { GIST_PATH } = require("../utils/const");
+const { fileExists, readFile, writeFile } = require("../utils/global-folder");
+
+const GIST_FILE = "aka-gist.json";
 
 const HTTPS_OPTIONS = {
 	headers: {
@@ -14,20 +15,20 @@ const HTTPS_OPTIONS = {
 
 const getUrl = (id) => `https://api.github.com/gists/${id}`;
 
-const hasLocalGist = () => fs.existsSync(GIST_PATH);
+const hasLocalGist = () => fileExists(GIST_FILE);
 
-const getLocalGist = () => JSON.parse(fs.readFileSync(GIST_PATH, "utf8"));
+const getLocalGist = () => JSON.parse(readFile(GIST_FILE));
 
-const saveFile = (data) => {
-	fs.closeSync(fs.openSync(GIST_PATH, "a"));
-	fs.writeFile(GIST_PATH, data, (err) => {
-		if (err) return log.error("Could not save gist", err);
-
-		return log.success(
+const saveLocalGist = (data) => {
+	try {
+		writeFile(GIST_FILE, data);
+		log.success(
 			"Gist cloned/updated",
 			log.c`new commands are available at: {green aka list} `,
 		);
-	});
+	} catch (err) {
+		log.error("Could not save gist", err);
+	}
 };
 
 const cloneGist = (id) => {
@@ -48,7 +49,7 @@ const cloneGist = (id) => {
 		res.on("end", () => {
 			if (statusCode === 200) {
 				// @todo - check if the data contains aka.yml
-				return saveFile(data);
+				return saveLocalGist(data);
 			}
 			const { message } = JSON.parse(data);
 			return log.error(`You got a problem: ${message}`);

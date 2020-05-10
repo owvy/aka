@@ -5,7 +5,8 @@ const { getLocalVars, parseVars } = require("./variables");
 const { getLocalGist } = require("./gist");
 
 const log = require("../utils/log");
-const { AKA_FILE } = require("../utils/const");
+
+const AKA_FILE = "aka.yml";
 
 const replaceTemplate = (cmd, variables) => {
 	const template = /{([^{]+)}/g;
