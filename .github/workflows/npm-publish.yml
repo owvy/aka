@@ -15,8 +15,7 @@ jobs:
         with:
           node-version: 10.0.0
       - name: Publish to npm
-        uses: pascalgn/npm-publish-action
-
+        uses: pascalgn/npm-publish-action@1.2.0
         with: # All of theses inputs are optional
           tag_name: "v%s"
           tag_message: "v%s"
