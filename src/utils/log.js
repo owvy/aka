@@ -1,6 +1,7 @@
 const chalk = require("chalk");
 
-const logger = console.log;
+// eslint-disable-next-line no-console
+const print = console.log;
 
 const colors = {
 	message: chalk.white,
@@ -10,23 +11,24 @@ const colors = {
 };
 
 const messageFactory = ({ msg, prefix, steps }) => {
-	logger("| ", prefix, chalk.bold(msg));
-	steps && steps.forEach((s) => logger("| ", colors.message(s)));
-	logger("| ");
+	print("| ", prefix, chalk.bold(msg));
+	if (steps) {
+		steps.forEach((s) => s && print("| ", colors.message(s)));
+	}
 };
 
 const error = (msg, ...steps) => {
-	const prefix = chalk.red("Error:");
+	const prefix = chalk.red("error:");
 	messageFactory({ prefix, msg, steps });
 };
 
 const info = (msg, ...steps) => {
-	const prefix = chalk.blue("Info:");
+	const prefix = chalk.blue("info:");
 	messageFactory({ prefix, msg, steps });
 };
 
 const success = (msg, ...steps) => {
-	const prefix = chalk.green("Success:");
+	const prefix = chalk.green("success:");
 	messageFactory({ prefix, msg, steps });
 };
 
@@ -36,4 +38,5 @@ module.exports = {
 	error,
 	info,
 	success,
+	print,
 };

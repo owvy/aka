@@ -5,3 +5,4 @@
 .aka.json
 node_modules
 variables.yml
+.aka/*
