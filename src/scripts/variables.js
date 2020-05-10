@@ -1,10 +1,10 @@
-const fs = require("fs");
-const shell = require("shelljs");
 const YAML = require("yaml");
 const chalk = require("chalk");
 
 const log = require("../utils/log");
-const { VAR_PATH } = require("../utils/const");
+const { readFile, writeFile, openFile } = require("../utils/global-folder");
+
+const VAR_FILE = "aka-variables.yml";
 
 const parseVars = (argv) => {
 	const vars = {};
@@ -18,8 +18,7 @@ const parseVars = (argv) => {
 
 const getLocalVars = () => {
 	try {
-		fs.closeSync(fs.openSync(VAR_PATH, "a"));
-		const data = fs.readFileSync(VAR_PATH, "utf8");
+		const data = readFile(VAR_FILE);
 		return data ? YAML.parse(data, { merge: true }) : {};
 	} catch (err) {
 		log.error("Yaml Error", err.message);
@@ -32,17 +31,13 @@ const saveVariable = (newVars) => {
 	try {
 		const localVars = getLocalVars();
 		const yaml = new YAML.Document();
+
 		yaml.contents = { ...localVars, ...newVars };
-		fs.writeFileSync(VAR_PATH, yaml);
+		writeFile(VAR_FILE, yaml);
 		log.success("save and sound", log.c`check the full list: {bold aka var list}`);
 	} catch (err) {
 		log.error("Something went wrong", err);
 	}
-};
-
-const openVariableFile = () => {
-	fs.closeSync(fs.openSync(VAR_PATH, "a"));
-	shell.exec(`open ${VAR_PATH}`);
 };
 
 const printVariableList = () => {
@@ -57,7 +52,7 @@ const printVariableList = () => {
 
 const runVariableCommand = (argv) => {
 	if (argv.length === 0) {
-		return openVariableFile();
+		return openFile(VAR_FILE);
 	}
 	if (argv[0] === "list") {
 		return printVariableList();

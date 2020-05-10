@@ -25,7 +25,11 @@
 	},
 	"scripts": {
 		"format": "prettier --write ./src",
-		"lint": "eslint --fix ./src"
+		"lint": "eslint --fix ./src",
+		"release": "npm publish --public=access && git push --follow-tags",
+		"patch-release": "npm version patch && npm run release",
+		"minor-release": "npm version minor && npm run release",
+		"major-release": "npm version major && npm run release"
 	},
 	"author": "Owvy Labs",
 	"homepage": "https://github.com/owvy/aka",
@@ -41,11 +45,12 @@
 		"prettier": "2.0.5"
 	},
 	"dependencies": {
-		"shelljs": "^0.8.4",
-		"yaml": "^1.9.2",
 		"chalk": "^4.0.0",
 		"command-line-commands": "^3.0.1",
-		"command-line-usage": "^6.1.0"
+		"command-line-usage": "^6.1.0",
+		"configstore": "^5.0.1",
+		"shelljs": "^0.8.4",
+		"yaml": "^1.9.2"
 	},
 	"lint-staged": {
 		"*.js": [
