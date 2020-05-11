@@ -1,74 +1,101 @@
 # AKA
 
-Aka is a friendly CLI to run sharable bash commands.
+AKA is a friendly CLI to run sharable bash commands.
 
 ## Quickstart
 
+Create your own [gist file](https://gist.github.com/) or clone one.
+The ony requirement is to have: `aka.yml`
+
 `npm install -g @owvy/aka`
+`aka clone [gist_id]`
 
-Usage Examples:
+---
 
-1. [Aka Config](#config)
-2. [Usage](#usage)
-3. [CLI Commands](#cli)
+#### Aka Config
 
-#### Config
+1. Simple Usage:
 
 ```yml
-what-time:
-  run: node -e new Date()
-  desc: Echo Current Time
+hello: # alias
+  run: echo Hello World # bash command
+  desc: Print Hello World # (Optional)
+```
 
-du:
-  run: docker-compose down & docker-compose up
-  desc: Restart Docker project
+> ```shell
+> > aka hello
+> # echo: Hello World
+> ```
 
-secret:
-  run: echo This is my secret, {SECRET_VALUE}
-  desc: Echo my secret values
+2. With Variables:
 
-create:
-  desc: Collection of create alias
+```yml
+ping: # alias
+  run: ping {URL} -c 2 # bash command
+  desc: Ping website # (Optional)
+```
+
+2.1 using the variable directly on the terminal:
+
+> ```shell
+> > aka ping url=www.google.com
+> # echo: PING www.google.com:
+> ```
+
+2.2 store the variable globally (see: [variables](#variables))
+
+> ```shell
+> > aka var URL=www.google.com
+> > aka ping
+> # echo: PING www.google.com:
+> ```
+
+---
+
+#### Nested config
+
+Nested commands can also be used:
+
+```yml
+say: # alias
+  desc: Print Greetings # (Optional)
   args:
-    folder: mkdir {name}
-    file: touch {name} && code {name}
+    gm: echo Good Morning!
+    gn: echo Adios, Night!
 ```
 
-#### Usage
+> ```shell
+> > aka say gn
+> # echo: Adios, Night!
+> ```
 
-You can create your own _Gist_ file or can clone any other one, ony requirement is to have: `aka.yml`
+---
 
-##### Run it
+#### Variables
 
-1. Command can be easily created given `run` and `desc` values, and they can be called as such:
+variables can be store globally and any command can have access:
 
 ```shell
- > aka what-time
- > aka du
+ # Create Variables
+ > aka var LOGIN_ID=myID
+ > aka var PASS=123pass!
 ```
 
-2. Command also can be nested and it will be interpreted as **sub command**. To access **args** on the command is easily as: `{argName}`
+[see more commands: CLI](#cli)
 
-```shell
-> aka create folder name=my_folder
-> aka create file name=playground.js
-```
+---
 
 #### CLI
 
-```js
-> aka // log list of commands available
-> aka clone GIST_ID // clone commands
-> aka update // update current gist
+##### (Default Commands)
 
-// Variables
-> aka var GLOBAL_VAR=1122 // add global variable from terminal
-> aka var // open variable file
-> aka var list // log variables
-```
-
-##### Important Notes
-
-The commands: `clone`, `update` and `var` are reserved by the package, whenever there is a conflict the command from the gist will be discarded.
+| Command        | Params           | Desc                                 |
+| -------------- | ---------------- | ------------------------------------ |
+| aka `clone`    | `gist_id`        | clone commands                       |
+| aka `update`   | -                | update the current gist              |
+| aka `list`     | -                | print available cmds                 |
+| aka `var`      | -                | open variable file `(variables.yml)` |
+| aka `var`      | `VAR_NAME=value` | store global variable                |
+| aka `var list` | -                | print all stored variables           |
 
 ##### PR, Comments & feedback are welcome :)

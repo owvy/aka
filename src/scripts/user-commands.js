@@ -1,12 +1,8 @@
 const shell = require("shelljs");
-const YAML = require("yaml");
 
 const { getLocalVars, parseVars } = require("./variables");
-const { getLocalGist } = require("./gist");
 
 const log = require("../utils/log");
-
-const AKA_FILE = "aka.yml";
 
 const replaceTemplate = (cmd, variables) => {
 	const template = /{([^{]+)}/g;
@@ -14,13 +10,6 @@ const replaceTemplate = (cmd, variables) => {
 		const value = variables[key];
 		return value == null ? ignore : value;
 	});
-};
-
-const getUserCommands = () => {
-	const { files } = getLocalGist();
-	const akaFile = files[AKA_FILE].content;
-	const commands = YAML.parse(akaFile);
-	return commands;
 };
 
 const shellExec = (rawCmd, argv) => {
@@ -50,5 +39,4 @@ const execUserCommands = (akaScript, argv) => {
 
 module.exports = {
 	execUserCommands,
-	getUserCommands,
 };

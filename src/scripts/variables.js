@@ -34,7 +34,7 @@ const saveVariable = (newVars) => {
 
 		yaml.contents = { ...localVars, ...newVars };
 		writeFile(VAR_FILE, yaml);
-		log.success("save and sound", log.c`check the full list: {bold aka var list}`);
+		log.success("save and sound", `check the full list: {bold aka var list}`);
 	} catch (err) {
 		log.error("Something went wrong", err);
 	}

@@ -1,15 +1,15 @@
 const commandLineCommands = require("command-line-commands");
 
 const { hasLocalGist } = require("./scripts/gist");
-const { getUserCommands, execUserCommands } = require("./scripts/user-commands");
-const { cloneGist, updateGist } = require("./scripts/gist");
+const { execUserCommands } = require("./scripts/user-commands");
+const { cloneGist, updateGist, getLocalCommands } = require("./scripts/gist");
 const { runVariableCommand } = require("./scripts/variables");
 const printUsage = require("./scripts/print-usage");
 
 const log = require("./utils/log");
 
 module.exports = () => {
-	const userCommands = hasLocalGist() ? getUserCommands() : {};
+	const userCommands = hasLocalGist() ? getLocalCommands() : {};
 	const defaultCommands = ["clone", "var", "update", "list"];
 	const validCommands = [null, ...Object.keys(userCommands), ...defaultCommands];
 
@@ -34,7 +34,7 @@ module.exports = () => {
 		log.error(
 			"Invalid Command",
 			!hasLocalGist() && `try the available: $ aka${validCommands.join(" ")}`,
-			!hasLocalGist() && log.c`gist register yet: aka clone {dim {white [gist_id]}}`,
+			!hasLocalGist() && `gist register yet: aka clone {dim {white [gist_id]}}`,
 		);
 	}
 
