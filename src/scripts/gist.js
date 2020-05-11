@@ -1,9 +1,11 @@
 const https = require("https");
+const YAML = require("yaml");
 
 const log = require("../utils/log");
 const { fileExists, readFile, writeFile } = require("../utils/global-folder");
 
 const GIST_FILE = "aka-gist.json";
+const AKA_FILE = "aka.yml";
 
 const HTTPS_OPTIONS = {
 	headers: {
@@ -19,12 +21,47 @@ const hasLocalGist = () => fileExists(GIST_FILE);
 
 const getLocalGist = () => JSON.parse(readFile(GIST_FILE));
 
+const getLocalCommands = () => {
+	try {
+		const { files } = getLocalGist();
+		const { content } = files[AKA_FILE];
+		return YAML.parse(content);
+	} catch (err) {
+		// Silent Error at this point as this function is called on init
+		// and it pollute the terminal
+	}
+	return {};
+};
+
+const isValidGist = (data) => {
+	// eslint-disable-next-line camelcase
+	const { files, html_url: htmlUrl } = JSON.parse(data);
+	const akaFile = files[AKA_FILE];
+
+	if (!akaFile) {
+		log.error(
+			"Missing File",
+			`your gist is missing {underline aka.yml} file, please check your gists:`,
+			`url: ${htmlUrl}`,
+		);
+		return false;
+	}
+
+	try {
+		YAML.parse(akaFile.content);
+		return true;
+	} catch (err) {
+		log.error("YAML Error", "Looks like your yaml has some error", err);
+		return false;
+	}
+};
+
 const saveLocalGist = (data) => {
 	try {
 		writeFile(GIST_FILE, data);
 		log.success(
 			"Gist cloned/updated",
-			log.c`new commands are available at: {green aka list} `,
+			`new commands are available at: {green aka list} `,
 		);
 	} catch (err) {
 		log.error("Could not save gist", err);
@@ -35,7 +72,7 @@ const cloneGist = (id) => {
 	if (!id) {
 		return log.error(
 			"You got a problem",
-			log.c`you need the gist id: aka clone {dim [gist_id]}`,
+			`you need the gist id: aka clone {dim [gist_id]}`,
 		);
 	}
 
@@ -48,8 +85,7 @@ const cloneGist = (id) => {
 
 		res.on("end", () => {
 			if (statusCode === 200) {
-				// @todo - check if the data contains aka.yml
-				return saveLocalGist(data);
+				return isValidGist(data) ? saveLocalGist(data) : null;
 			}
 			const { message } = JSON.parse(data);
 			return log.error(`You got a problem: ${message}`);
@@ -72,6 +108,6 @@ const updateGist = () => {
 module.exports = {
 	cloneGist,
 	updateGist,
-	getLocalGist,
+	getLocalCommands,
 	hasLocalGist,
 };

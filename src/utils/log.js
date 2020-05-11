@@ -1,32 +1,32 @@
 const chalk = require("chalk");
+const shell = require("shelljs");
 
-// eslint-disable-next-line no-console
-const print = console.log;
+const print = shell.echo;
+const cxt = (str) => chalk(Object.assign([], { raw: [str] }));
 
 const messageFactory = ({ msg, prefix, steps }) => {
-	print("| ", prefix, chalk.bold(msg));
+	print("| ", prefix, cxt(msg));
 	if (steps) {
-		steps.forEach((s) => s && print("| ", chalk.white(s)));
+		steps.forEach((s) => s && print("| ", cxt(s)));
 	}
 };
 
 const error = (msg, ...steps) => {
-	const prefix = chalk.red("error:");
+	const prefix = chalk.bold.red("error:");
 	messageFactory({ prefix, msg, steps });
 };
 
 const info = (msg, ...steps) => {
-	const prefix = chalk.blue("info:");
+	const prefix = chalk.bold.blue("info:");
 	messageFactory({ prefix, msg, steps });
 };
 
 const success = (msg, ...steps) => {
-	const prefix = chalk.green("success:");
+	const prefix = chalk.bold.green("success:");
 	messageFactory({ prefix, msg, steps });
 };
 
 module.exports = {
-	c: chalk,
 	error,
 	info,
 	success,
