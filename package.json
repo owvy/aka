@@ -1,6 +1,6 @@
 {
 	"name": "@owvy/aka",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Aka is a friendly CLI to run sharable alias & bash commands.",
 	"author": "Owvy Labs",
 	"homepage": "https://github.com/owvy/aka",
