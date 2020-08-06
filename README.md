@@ -1,4 +1,4 @@
-# AKA 2.0
+# AKA ⚡️
 
 AKA is a friendly CLI to run sharable bash commands.
 
@@ -17,52 +17,52 @@ The ony requirement is to have: `aka.yml`
 1. Simple Usage:
 
 ```yml
-hello: # alias
-  run: echo Hello World # bash command
-  desc: Print Hello World # (Optional)
+greeting:
+  desc: random greeting
+  run: echo howdy?
 ```
 
-> ```shell
-> > aka hello
-> # echo: Hello World
-> ```
+```shell
+> aka greeting
+# echo: howdy?
+```
 
 2. With Variables:
 
 ```yml
-ping: # alias
-  run: ping {URL} -c 2 # bash command
-  desc: Ping website # (Optional)
+greeting:
+ desc: random greetings
+ run: echo howdy {NAME}?
 ```
 
-2.1 using the variable directly on the terminal:
+2.1 Use variable directly on the terminal:
 
-> ```shell
-> > aka ping url=www.google.com
-> # echo: PING www.google.com:
-> ```
+```shell
+aka greeting name=Johnny
+# echo: howdy Johnny?
+```
 
-2.2 store the variable globally (see: [variables](#variables))
+2.2 Use stored variable (see: [variables](#variables))
 
-> ```shell
-> > aka var URL=www.google.com
-> > aka ping
-> # echo: PING www.google.com:
-> ```
+```shell
+aka var NAME=James
+aka greeting
+# echo: howdy James
+```
 
 ---
 
 #### BasePath
 
-Set `basePath` to all the commands from that list _if necessary_
+Set `basePath` to all the commands
 
 ```yml
-run-project: # alias
-	desc: run my fullstack project
-	basePath: ~/workspace/project
-	run:
-	 frontend: npm run frontend
-	 api: npm run api
+web-project:
+ desc: run my webapp stack
+ basePath: ~/workspace/project
+ run:
+  frontend: npm run frontend
+  api: npm run api
 ```
 
 ---
@@ -72,40 +72,39 @@ run-project: # alias
 Nested commands can also be used:
 
 ```yml
-say: # alias
-  desc: Print Greetings # (Optional)
+greeting:
+  desc: random greetings
   run:
-    gm: echo Good Morning!
-    gn: echo Adios, Night!
+    howdy: echo howdy!
+    bye: echo catch ya later
 ```
 
 ```yml
-say: # alias
-  desc: Print Greetings # (Optional)
-  run:
-		gm:
-		 desc: Say GM
-		 run: echo Good Morning!
-		gn:
-		 say: Say GN
-		 run: echo Adios, Night!
+greeting: # alias
+ desc: random greetings
+ run:
+  howdy:
+   desc: howdy echo
+   run: echo howdy!
+  bye:
+   desc: bye echo
+   run: echo catch ya later
 ```
 
-> ```shell
-> > aka say gn
-> # echo: Adios, Night!
-> ```
+```shell
+aka greeting bye
+# echo: catch ya later
+```
 
 ---
 
 #### Variables
 
-variables can be store globally and any command can have access:
+variables can be store globally and any access at any command:
 
 ```shell
- # Create Variables
- > aka var LOGIN_ID=myID
- > aka var PASS=123pass!
+ aka var LOGIN_ID=myID
+ aka var PASS=123pass!
 ```
 
 [see more commands: CLI](#cli)
@@ -120,7 +119,7 @@ variables can be store globally and any command can have access:
 | -------------- | ---------------- | ------------------------------------ |
 | aka `clone`    | `gist_id`        | clone commands                       |
 | aka `update`   | -                | update the current gist              |
-| aka `list`     | -                | print available cmds                 |
+| aka `list`     | -                | print available commands             |
 | aka `var`      | -                | open variable file `(variables.yml)` |
 | aka `var`      | `VAR_NAME=value` | store global variable                |
 | aka `var list` | -                | print all stored variables           |
