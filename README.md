@@ -1,4 +1,4 @@
-# AKA
+# AKA 2.0
 
 AKA is a friendly CLI to run sharable bash commands.
 
@@ -52,6 +52,21 @@ ping: # alias
 
 ---
 
+#### BasePath
+
+Set `basePath` to all the commands from that list _if necessary_
+
+```yml
+run-project: # alias
+	desc: run my fullstack project
+	basePath: ~/workspace/project
+	run:
+	 frontend: npm run frontend
+	 api: npm run api
+```
+
+---
+
 #### Nested config
 
 Nested commands can also be used:
@@ -59,9 +74,21 @@ Nested commands can also be used:
 ```yml
 say: # alias
   desc: Print Greetings # (Optional)
-  args:
+  run:
     gm: echo Good Morning!
     gn: echo Adios, Night!
+```
+
+```yml
+say: # alias
+  desc: Print Greetings # (Optional)
+  run:
+		gm:
+		 desc: Say GM
+		 run: echo Good Morning!
+		gn:
+		 say: Say GN
+		 run: echo Adios, Night!
 ```
 
 > ```shell
