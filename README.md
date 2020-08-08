@@ -23,8 +23,8 @@ greeting:
 ```
 
 ```shell
-> aka greeting
-# echo: howdy?
+aka greeting
+# > howdy?
 ```
 
 2. With Variables:
@@ -39,7 +39,7 @@ greeting:
 
 ```shell
 aka greeting name=Johnny
-# echo: howdy Johnny?
+# > howdy Johnny?
 ```
 
 2.2 Use stored variable (see: [variables](#variables))
@@ -47,7 +47,7 @@ aka greeting name=Johnny
 ```shell
 aka var NAME=James
 aka greeting
-# echo: howdy James
+# > howdy James
 ```
 
 ---
@@ -80,7 +80,7 @@ greeting:
 ```
 
 ```yml
-greeting: # alias
+greeting:
  desc: random greetings
  run:
   howdy:
@@ -93,7 +93,7 @@ greeting: # alias
 
 ```shell
 aka greeting bye
-# echo: catch ya later
+# > catch ya later
 ```
 
 ---

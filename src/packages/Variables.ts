@@ -1,55 +1,60 @@
 import * as YAML from "yaml";
 import * as chalk from "chalk";
+import { times } from "lodash";
 
-import * as Logger from "./Logger";
+import logger from "./Logger";
 import * as FileSync from "./FileSync";
+import { tryCatch } from "./Utils";
 
 const VAR_FILE = "aka-variables.yml";
 
-export type VariableMap = Record<string, boolean | string>;
+export type VariableMap = Record<string, string>;
 
-export const parseVars = (argv: string[]) => {
+export const parseArgs = (argv: string[] = []) => {
 	const vars: VariableMap = {};
 	argv.forEach((arg) => {
 		const [key, value] = arg.split("=");
-		vars[key] = value || true;
+		vars[key] = value || "true";
 	});
 
 	return vars;
 };
 
-export const getLocalVars = () => {
-	try {
-		const data = FileSync.readFile(VAR_FILE);
-		return data ? YAML.parse(data, { merge: true }) : {};
-	} catch (err) {
-		Logger.error("Yaml Error", err.message);
-	}
+export const openFile = () => FileSync.openFile(VAR_FILE);
 
-	return null;
-};
+export const getVars = () =>
+	tryCatch<unknown, VariableMap>({
+		tryer: () => {
+			const data = FileSync.readFile(VAR_FILE);
+			return data ? YAML.parse(data, { merge: true }) : {};
+		},
+		catcher: (err) => {
+			logger.error("Yaml Error", err);
+			return {};
+		},
+	})(null);
 
-export const saveVariables = (newVars: string[]) => {
-	try {
-		const localVars = getLocalVars();
+export const saveVar = tryCatch<string[]>({
+	tryer: (newVars) => {
+		const localVars = getVars();
 		const yaml = new YAML.Document();
-
-		yaml.contents = { ...localVars, ...parseVars(newVars) };
+		yaml.contents = { ...localVars, ...parseArgs(newVars) };
 		FileSync.writeFile(VAR_FILE, JSON.stringify(yaml));
-		Logger.success("save and sound", `check the full list: {bold aka var list}`);
-	} catch (err) {
-		Logger.error("Something went wrong", err);
-	}
-};
+		logger.success(`${newVars} was created`);
+	},
+	catcher: (err) => logger.error("Something went wrong", err),
+});
 
-export const printVariableList = () => {
-	const vars = getLocalVars();
+export const logList = () => {
+	const vars = getVars();
 	if (vars) {
-		Logger.print(chalk`| Local Variables:`, "\n|");
-		Object.keys(vars).forEach((key) => {
-			Logger.print(chalk`| {dim ${key}}: ${vars[key]}`);
+		logger.santa("\n");
+
+		Object.keys(vars).forEach((key, idx) => {
+			logger.log({
+				prefix: chalk.dim(`[${idx + 1}]`),
+				message: chalk`{blue ${key}}{white : ${vars[key]}}`,
+			});
 		});
 	}
 };
-
-export const openFile = () => FileSync.openFile(VAR_FILE);
