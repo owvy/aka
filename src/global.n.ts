@@ -2,13 +2,16 @@
 
 declare type Gist = {
 	id: string;
+	description: string;
+	html_url: string;
 	files: Record<
 		string,
 		{
+			filename: string;
 			content: string;
+			language: string;
 		}
 	>;
-	html_url: string;
 };
 
 declare type AkaRun = { run: string; desc: string };

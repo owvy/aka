@@ -1,7 +1,7 @@
 import * as shell from "shelljs";
 import { isArray } from "lodash";
 
-import * as VARS from "./Variables";
+import * as VARS from "../tasks/variables";
 
 type ExecOptions = {
 	vars: string[];

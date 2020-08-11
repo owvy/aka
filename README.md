@@ -31,8 +31,8 @@ aka greeting
 
 ```yml
 greeting:
- desc: random greetings
- run: echo howdy {NAME}?
+  desc: random greetings
+  run: echo howdy {NAME}?
 ```
 
 2.1 Use variable directly on the terminal:
@@ -45,7 +45,7 @@ aka greeting name=Johnny
 2.2 Use stored variable (see: [variables](#variables))
 
 ```shell
-aka var NAME=James
+aka var add NAME=James
 aka greeting
 # > howdy James
 ```
@@ -58,11 +58,11 @@ Set `basePath` to all the commands
 
 ```yml
 web-project:
- desc: run my webapp stack
- basePath: ~/workspace/project
- run:
-  frontend: npm run frontend
-  api: npm run api
+  desc: run my webapp stack
+  basePath: ~/workspace/project
+  run:
+    frontend: npm run frontend
+    api: npm run api
 ```
 
 ---
@@ -81,14 +81,14 @@ greeting:
 
 ```yml
 greeting:
- desc: random greetings
- run:
-  howdy:
-   desc: howdy echo
-   run: echo howdy!
-  bye:
-   desc: bye echo
-   run: echo catch ya later
+  desc: random greetings
+  run:
+    howdy:
+      desc: howdy echo
+      run: echo howdy!
+    bye:
+      desc: bye echo
+      run: echo catch ya later
 ```
 
 ```shell
@@ -103,8 +103,8 @@ aka greeting bye
 variables can be store globally and any access at any command:
 
 ```shell
- aka var LOGIN_ID=myID
- aka var PASS=123pass!
+ aka var add LOGIN_ID=myID
+ aka var add PASS=123pass!
 ```
 
 [see more commands: CLI](#cli)
@@ -120,8 +120,8 @@ variables can be store globally and any access at any command:
 | aka `clone`    | `gist_id`        | clone commands                       |
 | aka `update`   | -                | update the current gist              |
 | aka `list`     | -                | print available commands             |
-| aka `var`      | -                | open variable file `(variables.yml)` |
-| aka `var`      | `VAR_NAME=value` | store global variable                |
+| aka `var open` | -                | open variable file `(variables.yml)` |
+| aka `var add`  | `VAR_NAME=value` | store global variable                |
 | aka `var list` | -                | print all stored variables           |
 
 ##### PR, Comments & feedback are welcome :)

@@ -12,22 +12,29 @@ const getPath = (fileName: string) => {
 	return path.join(AKA_DIR, fileName);
 };
 
-export const fileExists = (fileName: string) => fs.existsSync(getPath(fileName));
+const exists = (fileName: string) => fs.existsSync(getPath(fileName));
 
-export const createFile = (fileName: string) =>
-	fs.closeSync(fs.openSync(getPath(fileName), "a"));
+const create = (fileName: string) => fs.closeSync(fs.openSync(getPath(fileName), "a"));
 
-export const writeFile = (fileName: string, data: string) => {
-	createFile(fileName);
+const write = (fileName: string, data: string) => {
+	create(fileName);
 	fs.writeFileSync(getPath(fileName), data);
 };
 
-export const readFile = (fileName: string) => {
-	createFile(fileName);
+const read = (fileName: string) => {
+	create(fileName);
 	return fs.readFileSync(getPath(fileName), "utf8");
 };
 
-export const openFile = (fileName: string) => {
-	createFile(fileName);
+const open = (fileName: string) => {
+	create(fileName);
 	shell.exec(`open ${getPath(fileName)}`);
+};
+
+export default {
+	create,
+	exists,
+	write,
+	read,
+	open,
 };

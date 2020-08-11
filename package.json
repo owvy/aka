@@ -1,6 +1,6 @@
 {
 	"name": "@owvy/aka",
-	"version": "2.0.2",
+	"version": "2.2.0",
 	"description": "Aka is a friendly CLI to run sharable alias & bash commands.",
 	"author": "Owvy Labs",
 	"homepage": "https://github.com/owvy/aka",
@@ -34,7 +34,7 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc -w",
-		"run-cmd": "node ./dist/index.js",
+		"cmd": "node ./dist/index.js",
 		"format": "prettier --write ./src",
 		"lint": "eslint './src/*/**/*.{js,ts,tsx}' --fix",
 		"release": "npm run build && npm publish --public=access && git push --follow-tags",
@@ -43,6 +43,7 @@
 		"major-release": "npm version major && npm run release"
 	},
 	"devDependencies": {
+		"@types/command-line-usage": "^5.0.1",
 		"@types/shelljs": "^0.8.8",
 		"@types/signale": "^1.4.1",
 		"@typescript-eslint/eslint-plugin": "^3.8.0",
@@ -60,7 +61,7 @@
 	"dependencies": {
 		"@caporal/core": "^2.0.2",
 		"chalk": "^4.1.0",
-		"chalk-table": "^1.0.2",
+		"command-line-usage": "^6.1.0",
 		"commander": "^6.0.0",
 		"configstore": "^5.0.1",
 		"lodash": "^4.17.19",

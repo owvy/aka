@@ -2,9 +2,10 @@ import { Signale } from "signale";
 
 const options = {
 	uppercaseLabel: true,
+	displayDate: true,
 	types: {
-		santa: {
-			badge: "🎅",
+		keys: {
+			badge: "🔑",
 			color: "blue",
 			label: "Variables",
 			logLevel: "info",
