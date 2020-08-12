@@ -1,14 +1,14 @@
 import * as shell from "shelljs";
 import { isArray } from "lodash";
 
-import * as Variables from "./Variables";
+import * as VARS from "../tasks/variables";
 
 type ExecOptions = {
 	vars: string[];
 	basePath?: string;
 };
 
-export const replaceTemplate = (cmd: string, variables: string[]) => {
+const replaceTemplate = (cmd: string, variables: VARS.VariableMap) => {
 	const template = /{([^{]+)}/g;
 	return cmd.replace(template, (ignore, key) => {
 		const value = variables[key];
@@ -17,7 +17,7 @@ export const replaceTemplate = (cmd: string, variables: string[]) => {
 };
 
 export const shellExec = (rawCmd: string | string[], { vars, basePath }: ExecOptions) => {
-	const variables = { ...Variables.getLocalVars(), ...Variables.parseVars(vars) };
+	const variables = { ...VARS.getVars(), ...VARS.parseArgs(vars) };
 	const commands = isArray(rawCmd) ? rawCmd.join(";") : rawCmd;
 	const cmd = replaceTemplate(commands, variables);
 
@@ -27,3 +27,5 @@ export const shellExec = (rawCmd: string | string[], { vars, basePath }: ExecOpt
 
 	shell.exec(cmd);
 };
+
+export default { shellExec };

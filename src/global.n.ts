@@ -2,19 +2,29 @@
 
 declare type Gist = {
 	id: string;
+	description: string;
+	html_url: string;
 	files: Record<
 		string,
 		{
+			filename: string;
 			content: string;
+			language: string;
 		}
 	>;
-	html_url: string;
 };
 
 declare type AkaRun = { run: string; desc: string };
 
-declare type AkaCmd = {
+declare type AkaAlias = {
 	basePath?: string;
 	desc?: string;
-	run: string | Record<string, string> | Record<string, AkaRun>;
+	run: string | string[] | Record<string, AkaRun>;
+};
+
+declare type AkaAliasMap = Record<string, AkaAlias>;
+
+declare type AkaConfig = {
+	id: string;
+	alias: AkaAliasMap;
 };
