@@ -19,7 +19,7 @@ declare type AkaRun = { run: string; desc: string };
 declare type AkaAlias = {
 	basePath?: string;
 	desc?: string;
-	run: string | string[] | Record<string, AkaRun>;
+	run: string | string[] | Record<string, AkaRun | string | string[]>;
 };
 
 declare type AkaAliasMap = Record<string, AkaAlias>;

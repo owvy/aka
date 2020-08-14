@@ -1,9 +1,12 @@
 import * as commander from "commander";
-import { isString, isArray, isObject } from "lodash";
+import { isString, isArray, isObject, get } from "lodash";
 
 import conditionally from "../utils/conditionally";
 import { shellExec } from "../utils/shell";
 import { getAkaConfig } from "../utils/gists";
+
+const isFlatRun = (run: AkaAlias["run"]): run is string | string[] =>
+	isString(run) || isArray(run);
 
 const buildLocalCommands = (program: commander.Command) => {
 	const akaConfig = getAkaConfig();
@@ -15,25 +18,51 @@ const buildLocalCommands = (program: commander.Command) => {
 			aliasKeys.forEach((key) => {
 				const { run, desc, basePath } = alias[key];
 
+				/**
+				 * Setup root alias (key)
+				 * root:
+				 *  desc: my root alias
+				 *  run: echo root
+				 */
 				const userCommands = program //
 					.command(key)
 					.arguments("[vars...]");
 
-				if (isString(run) || isArray(run)) {
+				/**
+				 * run cmd whether array or string
+				 * #1
+				 * root:
+				 *  run:
+				 * 	 - echo root
+				 * 	 - echo array steps
+				 *
+				 * #2
+				 * root:
+				 *  run: echo root; echo array steps
+				 */
+				if (isFlatRun(run)) {
 					userCommands
 						.description(desc ?? "")
 						.action(({ args: vars }) => shellExec(run, { vars, basePath }));
 				}
 
+				/**
+				 * run nested cmd config
+				 * #3
+				 * root:
+				 *  run:
+				 *    other: echo other
+				 * 	  another: echo another
+				 */
 				if (isObject(run) && !isArray(run)) {
 					Object.keys(run).forEach((nestedKey) => {
 						const nestedRun = run[nestedKey];
 
 						userCommands
 							.command(nestedKey)
-							.description(nestedRun.desc ?? "")
+							.description(get(nestedRun, "desc", ""))
 							.action(({ args: vars }) => {
-								const cmd = isString(nestedRun) ? nestedRun : nestedRun.run;
+								const cmd = isFlatRun(nestedRun) ? nestedRun : nestedRun.run;
 								shellExec(cmd, { vars, basePath });
 							});
 					});
