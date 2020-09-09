@@ -1,6 +1,8 @@
 # AKA ⚡️
-
 AKA is a friendly CLI to run sharable bash commands.
+
+[![npm version](https://badge.fury.io/js/%40owvy%2Faka.svg)](https://badge.fury.io/js/%40owvy%2Faka)
+
 
 ## Quickstart
 
