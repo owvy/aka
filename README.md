@@ -15,30 +15,30 @@ Create an [`aka.yml`](https://gist.github.com/) file.
 `````yaml
 ## Simple Script
 what-time:
-  desc: Print current time
-  run: node -e 'console.log(new Date())'
+ desc: Print current time
+ run: node -e 'console.log(new Date())'
 
 ## Scripts with vars
 secret:
   desc: print my secret value
-	run:
-		- echo Multiple lines,
-		- echo and this is my secret, {SECRET_VALUE}
+  run:
+   - echo Multiple lines,
+   - echo and this is my secret, {SECRET_VALUE}
 
 ## Sub-scripts
 create:
-  desc: A collection of scripts
-  run:
-    folder: mkdir {name}
-		file: touch {name} && code {name}
+ desc: A collection of scripts
+ run:
+  folder: mkdir {name}
+  file: touch {name} && code {name}
 
-## Scripts with base path
+## Scripts with the base path
 workspace:
-	desc: My Workspace
-	basePath: '~/workspace'
-	run:
-	 server: npm run server
-	 db: docker-compose up
+ desc: My Workspace
+ basePath: '~/workspace'
+ run:
+  server: npm run server
+  db: docker-compose up
 `````
 
 
@@ -65,10 +65,9 @@ $ aka secret
 Variables can be store globally and be accessed by any command:
 
 ```shell
- aka var add LOGIN_ID=MyID
- aka var add PASS=123pass!
+ $ aka var add LOGIN_ID=MyID
+ $ aka var add PASS=123pass!
 ```
-
 
 
 ## CLI
