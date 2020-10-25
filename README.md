@@ -1,129 +1,84 @@
-# AKA ⚡️
-AKA is a friendly CLI to run sharable bash commands.
+# 👨🏼‍🚀 aka
+aka is a friendly **cli** to run gist sharable bash commands.
 
 [![npm version](https://badge.fury.io/js/%40owvy%2Faka.svg)](https://badge.fury.io/js/%40owvy%2Faka)
 
 
-## Quickstart
-
-Create your own [gist file](https://gist.github.com/) or clone one.
-The ony requirement is to have: `aka.yml`
-
-`npm install -g @owvy/aka`
-`aka clone [gist_id]`
-
----
-
-#### Aka Config
-
-1. Simple Usage:
-
-```yml
-greeting:
-  desc: random greeting
-  run: echo howdy?
-```
+## Installation
 
 ```shell
-aka greeting
-# > howdy?
-```
+npm install -g @owvy/aka
+aka clone [gist_id]
+````
 
-2. With Variables:
+Create an [`aka.yml`](https://gist.github.com/) file.
+`````yaml
+## Simple Script
+what-time:
+  desc: Print current time
+  run: node -e 'console.log(new Date())'
 
-```yml
-greeting:
-  desc: random greetings
-  run: echo howdy {NAME}?
-```
+## Scripts with vars
+secret:
+  desc: print my secret value
+	run:
+		- echo Multiple lines,
+		- echo and this is my secret, {SECRET_VALUE}
 
-2.1 Use variable directly on the terminal:
-
-```shell
-aka greeting name=Johnny
-# > howdy Johnny?
-```
-
-2.2 Use stored variable (see: [variables](#variables))
-
-```shell
-aka var add NAME=James
-aka greeting
-# > howdy James
-```
-
----
-
-#### BasePath
-
-Set `basePath` to all the commands
-
-```yml
-web-project:
-  desc: run my webapp stack
-  basePath: ~/workspace/project
+## Sub-scripts
+create:
+  desc: A collection of scripts
   run:
-    frontend: npm run frontend
-    api: npm run api
-```
+    folder: mkdir {name}
+		file: touch {name} && code {name}
 
----
+## Scripts with base path
+workspace:
+	desc: My Workspace
+	basePath: '~/workspace'
+	run:
+	 server: npm run server
+	 db: docker-compose up
+`````
 
-#### Nested config
 
-Nested commands can also be used:
+## Usage
 
-```yml
-greeting:
-  desc: random greetings
-  run:
-    howdy: echo howdy!
-    bye: echo catch ya later
-```
+````shell
+$ aka what-time
 
-```yml
-greeting:
-  desc: random greetings
-  run:
-    howdy:
-      desc: howdy echo
-      run: echo howdy!
-    bye:
-      desc: bye echo
-      run: echo catch ya later
-```
+> Sun Oct 25 2020 22:41:07 GMT+0100 (Central European Standard Time)
+`````
 
-```shell
-aka greeting bye
-# > catch ya later
-```
+````shell
+$ aka var add SECRET_VALUE=123
+$ aka secret
 
----
+> Multiple lines,
+> and this is my secret, 123
 
-#### Variables
+`````
 
-variables can be store globally and any access at any command:
+
+## Variables
+
+Variables can be store globally and be accessed by any command:
 
 ```shell
- aka var add LOGIN_ID=myID
+ aka var add LOGIN_ID=MyID
  aka var add PASS=123pass!
 ```
 
-[see more commands: CLI](#cli)
 
----
 
-#### CLI
-
-##### (Default Commands)
+## CLI
 
 | Command        | Params           | Desc                                 |
 | -------------- | ---------------- | ------------------------------------ |
-| aka `clone`    | `gist_id`        | clone commands                       |
+| aka `clone`    | `gist_id`        | clone gist                           |
 | aka `update`   | -                | update the current gist              |
 | aka `list`     | -                | print available commands             |
 | aka `var open` | -                | open variable file `(variables.yml)` |
 | aka `var add`  | `VAR_NAME=value` | store global variable                |
 | aka `var list` | -                | print all stored variables           |
 
-##### PR, Comments & feedback are welcome :)

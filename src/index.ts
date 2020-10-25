@@ -2,6 +2,8 @@
 
 import * as commander from "commander";
 
+import pkg from "../package.json";
+
 import cloneTask from "./tasks/clone";
 import updateTask from "./tasks/update";
 import helpTask from "./tasks/help";
@@ -13,7 +15,7 @@ const { program } = commander;
 program //
 	.name("aka")
 	.addHelpCommand(false)
-	.version("2.1.0");
+	.version(pkg.version);
 
 buildLocalCommands(program);
 
